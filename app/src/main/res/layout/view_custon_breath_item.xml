@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp">
+
+    <RelativeLayout
+        android:id="@+id/rl_add_new_dot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="3dp"
+        android:background="@drawable/dash_frame"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="添加呼吸" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingEnd="0dp"
+        android:paddingStart="20dp">
+
+        <TextView
+            android:id="@+id/tv_breath_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="呼吸名称"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_is_recy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_breath_name"
+            android:layout_marginTop="5dp"
+            android:text="循环" />
+
+        <TextView
+            android:id="@+id/tv_dot_num_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_breath_name"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/tv_is_recy"
+            android:text="节点数：" />
+
+        <TextView
+            android:id="@+id/tv_dot_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_breath_name"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/tv_dot_num_title"
+            android:text="0" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white" />
+    </RelativeLayout>
+</RelativeLayout>
