@@ -2,8 +2,10 @@ package com.ws.mesh.custombreath.utils;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.SparseArray;
 
 import com.ws.mesh.custombreath.base.BaseActivity;
+import com.ws.mesh.custombreath.bean.CustomBreath;
 import com.ws.mesh.custombreath.bean.Mesh;
 import com.ws.mesh.custombreath.constant.AppLifeStatusConstant;
 
@@ -100,5 +102,5 @@ public class CoreData {
         mMangerActivity.remove(activityName);
     }
 
-    public static Handler mHandler = new Handler(Looper.getMainLooper());
+    public static SparseArray<CustomBreath> customBreathSparseArray;
 }

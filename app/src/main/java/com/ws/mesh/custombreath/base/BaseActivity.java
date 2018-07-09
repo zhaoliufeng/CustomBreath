@@ -1,6 +1,5 @@
 package com.ws.mesh.custombreath.base;
 
-import android.app.LauncherActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +13,7 @@ import com.ws.mesh.custombreath.BreathApplication;
 import com.ws.mesh.custombreath.R;
 import com.ws.mesh.custombreath.constant.AppLifeStatusConstant;
 import com.ws.mesh.custombreath.constant.IntentConstant;
+import com.ws.mesh.custombreath.ui.activity.LauncherActivity;
 import com.ws.mesh.custombreath.utils.CoreData;
 import com.ws.mesh.custombreath.utils.StatusBarUpper;
 
@@ -23,13 +23,7 @@ public abstract class BaseActivity extends FragmentActivity {
 
     protected abstract int getLayoutId();
 
-    protected abstract int initData();
-    /**
-     * 由上层界面传递过来的pageId
-     */
-    protected int mPageId;
-
-    protected BaseFragment mCurrFragment;
+    protected abstract void initData();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,15 +39,20 @@ public abstract class BaseActivity extends FragmentActivity {
         ButterKnife.bind(this);
         initData();
         CoreData.addActivity(this, getClass().getSimpleName());
+
+        //设置状态栏高度
+        if (findViewById(R.id.view_status_bar) != null){
+            setStatusBar(findViewById(R.id.view_status_bar));
+        }
     }
 
     public void pushActivity(Class<? extends BaseActivity> activityClass){
         startActivity(new Intent(this, activityClass));
     }
 
-    public void pushActivity(Class<? extends BaseActivity> activityClass, int pageId){
+    public void pushActivity(Class<? extends BaseActivity> activityClass, int intExtra){
         startActivity(new Intent(this, activityClass)
-                .putExtra(IntentConstant.PAGE_TYPE, pageId));
+                .putExtra(IntentConstant.NEED_ID, intExtra));
     }
 
     @Override
@@ -82,20 +81,5 @@ public abstract class BaseActivity extends FragmentActivity {
 
     public int getResourcesColor(int colorId){
         return getResources().getColor(colorId);
-    }
-
-    /**
-     * 渲染fragment
-     */
-    public void setPage(BaseFragment fragment) {
-        mCurrFragment = fragment;
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fl_frame, mCurrFragment);
-        fragmentTransaction.commit();
-    }
-
-    public int getPageId(){
-        mPageId = getIntent().getIntExtra(IntentConstant.PAGE_TYPE, -1);
-        return mPageId;
     }
 }

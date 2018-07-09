@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_bg"
-    android:orientation="vertical"
-    tools:context=".ui.activity.MainActivity">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,6 +22,15 @@
             android:layout_height="@dimen/header_title_height"
             android:background="@color/colorPrimary">
 
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="3dp"
+                android:padding="7dp"
+                android:src="@drawable/nav_bar_icon_back_white"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/tv_title"
@@ -31,26 +38,26 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/app_name"
+                android:text="编辑节点"
                 android:textColor="@color/white"
                 android:textSize="@dimen/title_text_size" />
 
             <ImageView
-                android:visibility="gone"
-                android:id="@+id/img_menu_add"
+                android:src="@drawable/nav_bar_icon_add_white"
+                android:id="@+id/iv_menu_right"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:padding="7dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="4dp"
-                android:padding="7dp"
-                android:src="@drawable/nav_bar_icon_add_white" />
+                android:layout_marginEnd="5dp"
+                android:visibility="visible" />
         </RelativeLayout>
 
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rl_breath"
+        android:id="@+id/rl_dots"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

@@ -20,7 +20,7 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
 //        List<BreathParams> paramsSparseArray = new ArrayList<>();
 //        BreathParams breathParams = new BreathParams();
-//        breathParams.index = 1;
+//        breathParams.id = 1;
 //        breathParams.HoldStep = 1;
 //        breathParams.ChangeStep = 2;
 //        breathParams.R = 255;
@@ -31,7 +31,7 @@ public class ExampleUnitTest {
 //        paramsSparseArray.add(0, breathParams);
 //        System.out.println(CustomBreath.paramsToString(paramsSparseArray));
 
-        String s = "[{\"R\":255,\"B\":0,\"ChangeStep\":2,\"C\":0,\"HoldStep\":1,\"G\":0,\"W\":0,\"index\":1}]";
+        String s = "[{\"R\":255,\"B\":0,\"ChangeStep\":2,\"C\":0,\"HoldStep\":1,\"G\":0,\"W\":0,\"id\":1}]";
         SparseArray<BreathParams> sparseArray = CustomBreath.stringToBreathParams(s);
         System.out.println(sparseArray.toString());
 

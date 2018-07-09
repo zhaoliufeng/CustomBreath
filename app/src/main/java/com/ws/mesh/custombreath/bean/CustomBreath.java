@@ -13,7 +13,7 @@ import java.lang.reflect.Field;
 
 public class CustomBreath {
     @DBFiled(isPrimary = true)
-    public int index;
+    public int id;
     @DBFiled
     public String name;
     @DBFiled
@@ -27,15 +27,17 @@ public class CustomBreath {
         if (paramsSparseArray == null || paramsSparseArray.size() == 0) return "";
         JSONArray jsonArray = new JSONArray();
         try {
-        for (int x = 0; x < paramsSparseArray.size(); x++) {
-            JSONObject jsonObject = new JSONObject();
-            BreathParams params = paramsSparseArray.valueAt(x);
-            Field fields[] = BreathParams.class.getFields();
-            for (Field field : fields){
-                jsonObject.put(field.getName(), field.get(params));
+            for (int x = 0; x < paramsSparseArray.size(); x++) {
+                JSONObject jsonObject = new JSONObject();
+                BreathParams params = paramsSparseArray.valueAt(x);
+                Field fields[] = BreathParams.class.getFields();
+                for (Field field : fields) {
+                    if (field.isAnnotationPresent(DBFiled.class)) {
+                        jsonObject.put(field.getName(), field.get(params));
+                    }
+                }
+                jsonArray.add(jsonObject);
             }
-            jsonArray.add(jsonObject);
-        }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -48,15 +50,17 @@ public class CustomBreath {
         if (TextUtils.isEmpty(BreathParamsText)) return mDevIdSparseArray;
         JSONArray jsonArray = JSON.parseArray(BreathParamsText);
         try {
-        for (int x = 0; x < jsonArray.size(); x++) {
-            JSONObject jsonObject = jsonArray.getJSONObject(x);
-            Field fields[] = BreathParams.class.getFields();
-            BreathParams breathParams = new BreathParams();
-            for (Field field : fields){
-                field.set(breathParams, jsonObject.get(field.getName()));
+            for (int x = 0; x < jsonArray.size(); x++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(x);
+                Field fields[] = BreathParams.class.getFields();
+                BreathParams breathParams = new BreathParams();
+                for (Field field : fields) {
+                    if (field.isAnnotationPresent(DBFiled.class)) {
+                        field.set(breathParams, jsonObject.get(field.getName()));
+                    }
+                }
+                mDevIdSparseArray.append(breathParams.index, breathParams);
             }
-            mDevIdSparseArray.append(breathParams.index, breathParams);
-        }
 
         } catch (IllegalAccessException e) {
             e.printStackTrace();

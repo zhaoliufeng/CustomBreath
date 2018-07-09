@@ -1,5 +1,6 @@
 package com.ws.mesh.custombreath.db;
 
+import android.database.Cursor;
 import android.util.SparseArray;
 
 import com.we_smart.sqldao.BaseDAO;
@@ -31,19 +32,21 @@ public class BreathDAO extends BaseDAO<CustomBreath> {
     }
 
     public boolean deleteBreath(CustomBreath breath) {
-        return delete(breath, String.valueOf(breath.index));
+        return delete(breath, String.valueOf(breath.id));
     }
 
     public SparseArray<CustomBreath> queryBreath() {
         List<CustomBreath> breaths = query(null);
         SparseArray<CustomBreath> breathSparseArray = new SparseArray<>();
         for (CustomBreath breath : breaths) {
-            breathSparseArray.put(breath.index, breath);
+            breath.mParamsSparseArray = CustomBreath.stringToBreathParams(breath.breathParams);
+            breathSparseArray.put(breath.id, breath);
         }
         return breathSparseArray;
     }
 
     public boolean updateBreath(CustomBreath breath) {
-        return update(breath, "index");
+        breath.breathParams = CustomBreath.paramsToString(breath.mParamsSparseArray);
+        return update(breath, "id");
     }
 }

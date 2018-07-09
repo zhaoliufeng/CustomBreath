@@ -4,7 +4,13 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#fff</color>
-    <color name="colorTextBlack_333">#333</color>
+    <color name="black">#000</color>
+
     <color name="app_bg">#f1f1f3</color>
-    <color name="colorGray_999">#999</color>
+
+    <color name="text_333">#333</color>
+    <color name="text_666">#666</color>
+    <color name="gray_999">#999</color>
+    <color name="grey_ddd">#ddd</color>
+    <color name="grey_eee">#eee</color>
 </resources>

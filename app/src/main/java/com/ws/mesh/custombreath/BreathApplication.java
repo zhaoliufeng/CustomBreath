@@ -13,6 +13,7 @@ public class BreathApplication extends TelinkApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        mApplication = this;
         DBHelper.getInstance().initDBHelper(new DBOpenHelper(this, AppConstant.SQL_NAME));
     }
 

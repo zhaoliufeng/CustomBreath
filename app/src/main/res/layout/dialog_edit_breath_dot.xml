@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="260dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_corners"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_edit_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="节点"
+        android:textColor="#152534"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_marginTop="5dp"
+        android:background="#fff" />
+
+    <com.ws.mesh.custombreath.ui.control.CustomSeekBar
+        android:id="@+id/csb_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        app:process_bg_height="4dp"
+        app:process_color="@android:color/transparent"
+        app:process_height="4dp"
+        app:thumb_color="@color/grey_ddd"
+        app:thumb_radius="8dp" />
+
+    <com.ws.mesh.custombreath.ui.control.CustomSeekBar
+        android:id="@+id/csb_warm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:process_bg_height="4dp"
+        app:process_color="@android:color/transparent"
+        app:process_height="4dp"
+        app:thumb_color="@color/grey_ddd"
+        app:thumb_radius="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="hold step: "
+            android:textColor="@color/gray_999" />
+
+        <TextView
+            android:id="@+id/tv_hold_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0ms"
+            android:textColor="@color/gray_999" />
+    </LinearLayout>
+
+
+    <com.ws.mesh.custombreath.ui.control.CustomSeekBar
+        android:id="@+id/csb_hold_step"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        app:process_bg_color="@color/grey_eee"
+        app:process_bg_height="4dp"
+        app:process_color="@android:color/holo_blue_light"
+        app:process_height="4dp"
+        app:thumb_color="@color/grey_ddd"
+        app:thumb_radius="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="change step: "
+            android:textColor="@color/gray_999" />
+
+        <TextView
+            android:id="@+id/tv_change_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0ms"
+            android:textColor="@color/gray_999" />
+    </LinearLayout>
+
+
+    <com.ws.mesh.custombreath.ui.control.CustomSeekBar
+        android:id="@+id/csb_change_step"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        app:process_bg_color="@color/grey_eee"
+        app:process_bg_height="4dp"
+        app:process_color="@android:color/holo_blue_light"
+        app:process_height="4dp"
+        app:thumb_color="@color/grey_ddd"
+        app:thumb_radius="8dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/grey_ddd" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            style="@style/custom_button"
+            android:text="@string/cancel" />
+
+        <View
+            android:layout_width="0.3dp"
+            android:layout_height="wrap_content"
+            android:background="@color/grey_ddd" />
+
+        <Button
+            android:id="@+id/btn_confirm"
+            style="@style/custom_button"
+            android:text="@string/confirm" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

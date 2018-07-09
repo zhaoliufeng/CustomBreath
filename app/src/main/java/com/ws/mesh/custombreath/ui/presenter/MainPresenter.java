@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.util.SparseArray;
 
 import com.telink.bluetooth.LeBluetooth;
 import com.telink.bluetooth.event.DeviceEvent;
@@ -22,7 +23,9 @@ import com.telink.util.Event;
 import com.telink.util.EventListener;
 import com.ws.mesh.custombreath.BreathApplication;
 import com.ws.mesh.custombreath.base.BaseActivity;
+import com.ws.mesh.custombreath.bean.CustomBreath;
 import com.ws.mesh.custombreath.constant.AppConstant;
+import com.ws.mesh.custombreath.db.BreathDAO;
 import com.ws.mesh.custombreath.service.TelinkLightService;
 import com.ws.mesh.custombreath.ui.impl.IMainView;
 import com.ws.mesh.custombreath.utils.CoreData;
@@ -158,8 +161,7 @@ public class MainPresenter implements EventListener<String> {
     /**
      * 设备的状态变化
      */
-    private void onDeviceStatusChanged(DeviceEvent event) {
-        DeviceInfo deviceInfo = event.getArgs();
+    private void onDeviceStatusChanged(DeviceEvent event) { DeviceInfo deviceInfo = event.getArgs();
         switch (deviceInfo.status) {
             case LightAdapter.STATUS_LOGIN:
                 mIMainView.onLoginSuccess();
