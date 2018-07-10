@@ -61,6 +61,7 @@
             android:textColor="@color/text_333" />
 
         <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_edit"
             android:background="@drawable/btn_edit"
             android:layout_toStartOf="@id/btn_del"
             android:text="Edit"

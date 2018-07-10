@@ -26,5 +26,6 @@ public class LauncherActivity extends BaseActivity implements ILauncherView{
     @Override
     public void enterMain() {
         pushActivity(MainActivity.class);
+        finish();
     }
 }

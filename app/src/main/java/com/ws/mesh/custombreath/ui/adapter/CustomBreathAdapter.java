@@ -47,7 +47,7 @@ public class CustomBreathAdapter extends RecyclerView.Adapter {
                 }
             }
         });
-        viewHolder.mBreathName.setOnClickListener(new View.OnClickListener() {
+        viewHolder.mBtnExecute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onItemSelectListener != null){

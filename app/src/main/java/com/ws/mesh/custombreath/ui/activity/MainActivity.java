@@ -3,7 +3,6 @@ package com.ws.mesh.custombreath.ui.activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
-import android.view.View;
 
 import com.ws.mesh.custombreath.R;
 import com.ws.mesh.custombreath.base.BaseActivity;
@@ -12,10 +11,13 @@ import com.ws.mesh.custombreath.db.BreathDAO;
 import com.ws.mesh.custombreath.ui.adapter.CustomBreathAdapter;
 import com.ws.mesh.custombreath.ui.impl.IMainView;
 import com.ws.mesh.custombreath.ui.presenter.MainPresenter;
+import com.ws.mesh.custombreath.utils.BreathFactory;
 import com.ws.mesh.custombreath.utils.CoreData;
+import com.ws.mesh.custombreath.utils.SendMsg;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import butterknife.OnLongClick;
 
 public class MainActivity extends BaseActivity implements IMainView{
 
@@ -48,7 +50,8 @@ public class MainActivity extends BaseActivity implements IMainView{
 
             @Override
             public void OnExecute(int position) {
-
+                CustomBreath customBreath = CoreData.customBreathSparseArray.get(position);
+                BreathFactory.create(position + 1,customBreath.isCysle, customBreath.mParamsSparseArray);
             }
 
             @Override
@@ -60,6 +63,20 @@ public class MainActivity extends BaseActivity implements IMainView{
         });
     }
 
+    private boolean isOpen = true;
+    @OnClick(R.id.tv_title)
+    public void switchDevice(){
+        isOpen = !isOpen;
+        SendMsg.switchDevice(0xffff, isOpen);
+    }
+
+    @OnLongClick(R.id.tv_title)
+    public boolean loadBreath(){
+        //加载呼吸
+        byte[] params = new byte[]{ 0x0a, (byte) (0x0a + 1) };
+        SendMsg.sendBreath(0xFFFF, (byte) 0xE2, params);
+        return true;
+    }
     @Override
     protected void onStart() {
         super.onStart();

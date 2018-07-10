@@ -15,29 +15,33 @@ public class CustomBreathPresenter {
     private int changeStep;
     private SparseArray<BreathParams> mParamsSparseArray;
 
-    public CustomBreathPresenter(ICustomBreathView customBreathView, SparseArray<BreathParams> paramsSparseArray){
+    public CustomBreathPresenter(ICustomBreathView customBreathView, SparseArray<BreathParams> paramsSparseArray) {
         mICustomBreathView = customBreathView;
         mParamsSparseArray = paramsSparseArray;
     }
 
-    public void addDot(){
-        if (color != null){
+    public void addDot(int index) {
+        if (color != null) {
             //添加彩色节点
             BreathParams breathParams = new BreathParams();
-            breathParams.index = mParamsSparseArray.size();
+            breathParams.index =
+                    index == -1 ? mParamsSparseArray.size() : index;
             breathParams.R = color.r;
             breathParams.B = color.b;
             breathParams.G = color.g;
-            breathParams.W = -1;
+            breathParams.W = 0;
+            breathParams.C = 0;
             breathParams.ChangeStep = changeStep;
             breathParams.HoldStep = holdStep;
             mParamsSparseArray.put(breathParams.index, breathParams);
             mICustomBreathView.addDot();
-        }else {
+        } else {
             //添加色温节点
             BreathParams breathParams = new BreathParams();
-            breathParams.index = mParamsSparseArray.size();
+            breathParams.index =
+                    index == -1 ? mParamsSparseArray.size() : index;
             breathParams.W = warm;
+            breathParams.C = 255 - warm;
             breathParams.ChangeStep = changeStep;
             breathParams.HoldStep = holdStep;
             mParamsSparseArray.put(breathParams.index, breathParams);
@@ -45,21 +49,21 @@ public class CustomBreathPresenter {
         }
     }
 
-    public void setHoldStep(int step){
-        holdStep = (int) ((step/100f) * 255);
+    public void setHoldStep(int step) {
+        holdStep = (int) ((step / 100f) * 255);
     }
 
-    public void setChangeStep(int step){
-        changeStep = (int) ((step/100f) * 255);
+    public void setChangeStep(int step) {
+        changeStep = (int) ((step / 100f) * 255);
     }
 
-    public void setWarm(int process){
+    public void setWarm(int process) {
         color = null;
-        warm = (int) ((process/100f) * 255);
+        warm = (int) ((process / 100f) * 255);
     }
 
     public void setColor(int process) {
-        warm = -1;
+        warm = 0;
         if (color == null)
             color = new RGBColor();
         if (process <= 20) {

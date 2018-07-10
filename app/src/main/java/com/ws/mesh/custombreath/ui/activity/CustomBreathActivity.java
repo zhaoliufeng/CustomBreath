@@ -61,11 +61,31 @@ public class CustomBreathActivity extends BaseActivity implements ICustomBreathV
         customDotsAdapter = new CustomDotsAdapter(mParamsSparseArray, this);
         mRlDots.setAdapter(customDotsAdapter);
         mRlDots.setLayoutManager(new LinearLayoutManager(this));
+
+        customDotsAdapter.setOnItemSelectListener(new CustomDotsAdapter.OnItemSelectListener() {
+            @Override
+            public void onEdit(int position) {
+                popDotDialog(position);
+            }
+
+            @Override
+            public void onDel(int position) {
+                SparseArray<BreathParams> sparseArray = mParamsSparseArray.clone();
+                sparseArray.remove(position);
+                mParamsSparseArray.clear();
+                for (int i = 0; i < sparseArray.size(); i++){
+                    sparseArray.valueAt(i).index = i;
+                    mParamsSparseArray.append(i, sparseArray.valueAt(i));
+                }
+                customDotsAdapter.notifyDataSetChanged();
+                BreathDAO.getBreathDaoInstance().updateBreath(mCustomBreath);
+            }
+        });
     }
 
     @OnClick(R.id.iv_menu_right)
     public void onAddDot() {
-        popDotDialog();
+        popDotDialog(-1);
     }
 
     @OnClick(R.id.img_back)
@@ -73,7 +93,7 @@ public class CustomBreathActivity extends BaseActivity implements ICustomBreathV
         finish();
     }
 
-    private void popDotDialog() {
+    private void popDotDialog(final int position) {
         final AlertDialog mAlertDialog = new AlertDialog.Builder(this, R.style.CustomDialog).create();
         mAlertDialog.show();
         Window window = mAlertDialog.getWindow();
@@ -175,7 +195,7 @@ public class CustomBreathActivity extends BaseActivity implements ICustomBreathV
             btnConfirm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mPresenter.addDot();
+                    mPresenter.addDot(position);
                     mAlertDialog.dismiss();
                 }
             });
